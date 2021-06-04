@@ -1,22 +1,22 @@
 class ArticleModel{
 
-  late String author;
-  late String title;
-  late String description;
-  late String url;
-  late String urlToImage;
-  late String content;
-  late String publishedAt;
+   String author;
+   String title;
+   String description;
+   String url;
+   String urlToImage;
+   String content;
+   String publishedAt;
 
   ArticleModel({
 
-    required this.author,
-    required this.title,
-    required this.description,
-    required this.url,
-    required this.content,
-    required this.urlToImage,
-    required this.publishedAt
+     this.author,
+     this.title,
+     this.description,
+     this.url,
+     this.content,
+     this.urlToImage,
+     this.publishedAt
   }
       );
 

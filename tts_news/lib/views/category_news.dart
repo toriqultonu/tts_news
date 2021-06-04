@@ -7,7 +7,7 @@ class CategoryNews extends StatefulWidget {
 
   final String category;
 
-  CategoryNews({required this.category});
+  CategoryNews({ this.category});
 
   @override
   _CategoryNewsState createState() => _CategoryNewsState();

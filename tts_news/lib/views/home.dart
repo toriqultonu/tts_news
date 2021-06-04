@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
 
 class CategoryTile extends StatelessWidget {
 
-  late final imageUrl, categoryName;
+  final imageUrl, categoryName;
 
   CategoryTile({this.imageUrl, this.categoryName});
 
@@ -145,7 +145,7 @@ class BlogTile extends StatelessWidget {
 
   final String imageUrl, title, desc, url;
 
-  BlogTile({required this.imageUrl, required this.title, required this.desc, required this.url});
+  BlogTile({ this.imageUrl,  this.title,  this.desc,  this.url});
 
   @override
   Widget build(BuildContext context) {
