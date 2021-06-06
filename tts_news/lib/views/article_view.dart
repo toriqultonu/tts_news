@@ -14,6 +14,8 @@ class ArticleView extends StatefulWidget {
 
 class _ArticleViewState extends State<ArticleView> {
 
+  bool _isLoading = true;
+
   final Completer<WebViewController> _completer = Completer<WebViewController>();
 
   @override

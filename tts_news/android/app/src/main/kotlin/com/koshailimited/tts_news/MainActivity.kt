@@ -1,4 +1,4 @@
-package com.example.tts_news
+package com.koshailimited.tts_news
 
 import io.flutter.embedding.android.FlutterActivity
 

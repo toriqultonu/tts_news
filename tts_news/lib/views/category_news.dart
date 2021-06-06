@@ -6,8 +6,9 @@ import 'home.dart';
 class CategoryNews extends StatefulWidget {
 
   final String category;
+  final String code;
 
-  CategoryNews({ this.category});
+  CategoryNews({this.code, this.category});
 
   @override
   _CategoryNewsState createState() => _CategoryNewsState();
@@ -25,7 +26,7 @@ class _CategoryNewsState extends State<CategoryNews> {
     getCategoryNews();
   }
   getCategoryNews()async{
-    CategoryNewsClass newsInstance = CategoryNewsClass();
+    CategoryNewsClass newsInstance = CategoryNewsClass(countryCode: widget.code);
     await newsInstance.getCategoryNews(category: widget.category);
     articles = newsInstance.news;
     setState(() {

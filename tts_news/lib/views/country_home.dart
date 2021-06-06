@@ -1,23 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:tts_news/helper/data.dart';
 import 'package:tts_news/helper/news.dart';
 import 'package:tts_news/model/article_model.dart';
 import 'package:tts_news/model/category_model.dart';
-import 'package:tts_news/views/article_view.dart';
-import 'package:tts_news/views/category_news.dart';
-import 'package:tts_news/views/navigation_drawer_widget.dart';
 
-class Home extends StatefulWidget {
+import 'article_view.dart';
+import 'category_news.dart';
+import 'navigation_drawer_widget.dart';
+
+class CountryHome extends StatefulWidget {
+
+  String code;
+
+  CountryHome({@required this.code});
 
   @override
-  _HomeState createState() => _HomeState();
+  _CountryHomeState createState() => _CountryHomeState();
 }
 
-class _HomeState extends State<Home> {
-
+class _CountryHomeState extends State<CountryHome> {
   bool _loading = true;
   List<CategoryModel> categories = [];
   List<ArticleModel> articles = [];
@@ -32,7 +34,7 @@ class _HomeState extends State<Home> {
   }
 
   getNews()async{
-    News newsInstance = News();
+    News newsInstance = News(countryCode: widget.code);
     await newsInstance.getNews();
     articles = newsInstance.news;
     setState(() {
@@ -79,6 +81,7 @@ class _HomeState extends State<Home> {
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index){
                     return CategoryTile(
+                      code: widget.code,
                       imageUrl: categories[index].imageUrl,
                       categoryName: categories[index].categoryName ,
                     );
@@ -96,10 +99,10 @@ class _HomeState extends State<Home> {
                   scrollDirection: Axis.vertical,
                   itemBuilder: (context, index){
                     return BlogTile(
-                        imageUrl: articles[index].urlToImage,
-                        title: articles[index].title,
-                        desc: articles[index].description,
-                        url: articles[index].url,
+                      imageUrl: articles[index].urlToImage,
+                      title: articles[index].title,
+                      desc: articles[index].description,
+                      url: articles[index].url,
                     );
                   },
                 ),
@@ -114,15 +117,15 @@ class _HomeState extends State<Home> {
 
 class CategoryTile extends StatelessWidget {
 
-  final imageUrl, categoryName;
+  final imageUrl, categoryName, code;
 
-  CategoryTile({this.imageUrl, this.categoryName});
+  CategoryTile({this.code,this.imageUrl, this.categoryName});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryNews(category: categoryName.toString().toLowerCase())));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => CategoryNews(code:code,category: categoryName.toString().toLowerCase())));
       },
       child: Container(
         margin: EdgeInsets.only(right: 16),
@@ -140,9 +143,9 @@ class CategoryTile extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Text(categoryName, style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.w500
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500
               ),),
             )
           ],
@@ -181,5 +184,4 @@ class BlogTile extends StatelessWidget {
     );
   }
 }
-
 

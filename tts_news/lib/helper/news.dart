@@ -4,10 +4,15 @@ import 'package:tts_news/model/article_model.dart';
 import 'package:http/http.dart' as http;
 
 class News{
+
+  String countryCode;
+
+  News({this.countryCode});
+
   List<ArticleModel> news = [];
 
   Future<void> getNews() async {
-     String URL = "https://newsapi.org/v2/top-headlines?country=us&apiKey=c29e863d20894e4aa566acd3c8c59d15";
+     String URL = countryCode == null ? "https://newsapi.org/v2/top-headlines?country=us&apiKey=c29e863d20894e4aa566acd3c8c59d15" : "https://newsapi.org/v2/top-headlines?country=$countryCode&apiKey=c29e863d20894e4aa566acd3c8c59d15";
 
     var response = await http.get(Uri.parse(URL));
     var jsonData = jsonDecode(response.body);
@@ -32,10 +37,14 @@ class News{
 }
 
 class CategoryNewsClass{
+  String countryCode;
+
+  CategoryNewsClass({this.countryCode});
+
   List<ArticleModel> news = [];
 
   Future<void> getCategoryNews({ String category}) async {
-    String URL = "https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=c29e863d20894e4aa566acd3c8c59d15";
+    String URL = countryCode == null ? "https://newsapi.org/v2/top-headlines?country=us&category=$category&apiKey=c29e863d20894e4aa566acd3c8c59d15":"https://newsapi.org/v2/top-headlines?country=$countryCode&category=$category&apiKey=c29e863d20894e4aa566acd3c8c59d15";
 
     var response = await http.get(Uri.parse(URL));
     var jsonData = jsonDecode(response.body);
