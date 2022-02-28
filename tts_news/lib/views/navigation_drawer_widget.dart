@@ -1,5 +1,5 @@
-
 import 'package:flag/flag.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tts_news/views/country_home.dart';
 
@@ -304,9 +304,10 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
     return Row(
       children: [
         SizedBox(width: 24,),
-        FlutterLogo(size: 40,),
+        //FlutterLogo(size: 40,),
+        Image(image: AssetImage('assets/logo.png'),height: 45, width: 45,),
         SizedBox(width: 10,),
-        Text("tts-",style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500)),
+        Text("tts-",style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500, color: Colors.black87)),
         Text("News", style: TextStyle(fontSize: 30,color: Colors.blue, fontWeight: FontWeight.w500),)
       ],
     );
